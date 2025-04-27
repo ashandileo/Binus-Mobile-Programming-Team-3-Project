@@ -99,33 +99,37 @@ export default function Index() {
       />
       <ScrollView className="p-4">
         {surveys.map((item) => (
-          <TouchableOpacity
-            key={item.id}
-            onPress={() => handleCardPress(item.id)}
-            activeOpacity={0.7}
-          >
-            <Card className="mb-6">
-              <Card.Content className="flex-row gap-4 ">
-                <Image
-                  source={{ uri: item.image || "https://picsum.photos/700" }}
-                  style={{ width: 100, height: 100, borderRadius: 8 }}
-                />
-                <View className="flex-1 justify-between">
-                  <View className="flex-row items-center justify-between">
-                    <Text variant="titleMedium" style={{ fontWeight: "bold" }}>
-                      {item.street}
-                    </Text>
-                    <Text variant="labelMedium">
-                      {formatDate(item.tanggal)}
-                    </Text>
+          <View key={item.id} className="mb-6">
+            <TouchableOpacity
+              onPress={() => handleCardPress(item.id)}
+              activeOpacity={0.7}
+            >
+              <Card>
+                <Card.Content className="flex-row gap-4 ">
+                  <Image
+                    source={{ uri: item.image || "https://picsum.photos/700" }}
+                    style={{ width: 100, height: 100, borderRadius: 8 }}
+                  />
+                  <View className="flex-1 justify-between">
+                    <View className="flex-row items-center justify-between">
+                      <Text
+                        variant="titleMedium"
+                        style={{ fontWeight: "bold" }}
+                      >
+                        {item.street}
+                      </Text>
+                      <Text variant="labelMedium">
+                        {formatDate(item.tanggal)}
+                      </Text>
+                    </View>
+                    <Text variant="bodyMedium">{item.description}</Text>
+                    <Text variant="labelSmall">{item.lokasi}</Text>
+                    <Text variant="labelSmall">{getTimeAgo(item.tanggal)}</Text>
                   </View>
-                  <Text variant="bodyMedium">{item.description}</Text>
-                  <Text variant="labelSmall">{item.lokasi}</Text>
-                  <Text variant="labelSmall">{getTimeAgo(item.tanggal)}</Text>
-                </View>
-              </Card.Content>
-            </Card>
-          </TouchableOpacity>
+                </Card.Content>
+              </Card>
+            </TouchableOpacity>
+          </View>
         ))}
         <View className="h-20" />
       </ScrollView>
